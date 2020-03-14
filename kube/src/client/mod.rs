@@ -167,6 +167,7 @@ impl APIClient {
             async {
                 let mut buff = _buff; // can be avoided, see #145
                 loop {
+                    // loop here in case the chunk is an incomplete WatchEvent
                     trace!("Await chunk");
                     match resp.chunk().await {
                         Ok(Some(chunk)) => {
